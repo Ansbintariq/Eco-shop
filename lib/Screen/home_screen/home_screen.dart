@@ -3,9 +3,12 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:eco_shop/Mock/mock_data.dart';
+import 'package:eco_shop/Screen/cart_screen/cart_controller.dart';
+import 'package:eco_shop/Screen/cart_screen/cart_page.dart';
+import 'package:eco_shop/Screen/product/product_details_page.dart';
 import 'package:eco_shop/Themes/colors.dart';
 import 'package:eco_shop/comman_widget/Catagory_widget.dart';
-import 'package:eco_shop/comman_widget/vagitable_card.dart';
+import 'package:eco_shop/comman_widget/product_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -60,25 +63,32 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Badge.count(
-                                  textStyle:
-                                      Theme.of(context).textTheme.labelSmall,
-                                  textColor:
-                                      Theme.of(context).colorScheme.outline,
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.onError,
-                                  smallSize: 5,
-                                  count: 2,
-                                  child: Icon(
-                                    Icons.shopping_cart_outlined,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onBackground,
-                                    size: 30,
-                                  ),
-                                )),
+                            GetBuilder(
+                              init: AddCart(),
+                              builder: (value) => InkWell(
+                                child: IconButton(
+                                    onPressed: () {
+                                      Get.to(() => CartPage());
+                                    },
+                                    icon: Badge.count(
+                                      textStyle:
+                                          Theme.of(context).textTheme.bodySmall,
+                                      textColor:
+                                          Theme.of(context).colorScheme.outline,
+                                      backgroundColor:
+                                          Theme.of(context).colorScheme.onError,
+                                      smallSize: 2,
+                                      count: value.cartList.length,
+                                      child: Icon(
+                                        Icons.shopping_cart_outlined,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onBackground,
+                                        size: 30,
+                                      ),
+                                    )),
+                              ),
+                            ),
                           ],
                         ),
                         Container(
@@ -91,6 +101,8 @@ class HomeScreen extends StatelessWidget {
                                     Theme.of(context).colorScheme.onBackground,
                                 filled: true,
                                 hintText: "Search products",
+                                hintStyle:
+                                    Theme.of(context).textTheme.bodyMedium,
                                 border: OutlineInputBorder()),
                           ),
                         )
@@ -183,11 +195,13 @@ class HomeScreen extends StatelessWidget {
                                                     .height *
                                                 .005,
                                           ),
-                                          Text(
-                                            e['heading'],
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge,
+                                          Flexible(
+                                            child: Text(
+                                              e['heading'],
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge,
+                                            ),
                                           ),
                                           SizedBox(
                                             height: MediaQuery.of(context)
@@ -209,6 +223,12 @@ class HomeScreen extends StatelessWidget {
                                         ],
                                       ),
                                       Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .3,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .28,
                                         child: Image.asset(
                                           e["img_path"],
                                           fit: BoxFit.fill,
@@ -295,13 +315,7 @@ class HomeScreen extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             itemCount: mockData.length,
                             itemBuilder: (context, index) {
-                              return ProductCard(
-                                  title: mockData[index]['title'],
-                                  price: mockData[index]['price'],
-                                  offPrice: mockData[index]['offPrice'],
-                                  img: Image.asset(
-                                    mockData[index]['img'],
-                                  ));
+                              return ProductCard(product: mockData[index]);
                             },
                           )),
                     ],

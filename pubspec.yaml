@@ -39,6 +39,7 @@ dependencies:
   get: ^4.6.5
   carousel_slider: ^4.2.1
   badges: ^3.0.2
+  curved_navigation_bar: ^1.0.3
 
 dev_dependencies:
   flutter_test:

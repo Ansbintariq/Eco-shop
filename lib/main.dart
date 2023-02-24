@@ -1,5 +1,3 @@
-import 'package:eco_shop/Screen/home_screen/home_screen.dart';
-import 'package:eco_shop/Screen/product/product.dart';
 import 'package:eco_shop/Screen/splash_screen/splash.dart';
 import 'package:eco_shop/Themes/themes.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: Mythemes.lightTheme,
       darkTheme: Mythemes.darkTheme,
       themeMode: ThemeMode.system,
-      home: Product(),
+      home: Splash_screen(),
     );
   }
 }

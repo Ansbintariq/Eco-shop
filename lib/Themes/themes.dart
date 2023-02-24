@@ -88,7 +88,7 @@ class Mythemes {
         ),
         bodySmall: GoogleFonts.montserrat(
           color: Color.fromARGB(255, 210, 208, 208),
-          fontSize: 13,
+          fontSize: 12,
         ),
         bodyLarge: GoogleFonts.montserrat(
             color: Color.fromARGB(255, 0, 0, 0),
@@ -101,10 +101,6 @@ class Mythemes {
         labelSmall: GoogleFonts.montserrat(
             color: Color.fromARGB(255, 0, 0, 0),
             fontSize: 14,
-            fontWeight: FontWeight.bold),
-        titleMedium: GoogleFonts.montserrat(
-            color: Color.fromARGB(255, 220, 5, 5),
-            fontSize: 22,
             fontWeight: FontWeight.bold),
         titleSmall: GoogleFonts.montserrat(
             color: Color.fromARGB(255, 0, 0, 0),

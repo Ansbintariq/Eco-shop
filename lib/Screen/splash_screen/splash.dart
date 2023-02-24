@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:eco_shop/Screen/home_screen/home_screen.dart';
 import 'package:eco_shop/Themes/colors.dart';
 import 'package:eco_shop/Themes/themes.dart';
+import 'package:eco_shop/comman_widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class _Splash_screenState extends State<Splash_screen> {
   @override
   void initState() {
     super.initState();
-    // Timer(const Duration(seconds: 3), () => Get.off(() => const HomeScreen()));
+    Timer(const Duration(seconds: 3), () => Get.off(() => BottomBar()));
   }
 
   @override
