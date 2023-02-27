@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final CarouselController carouselController = CarouselController();
-  var mockData = MockData().productData;
+  var products = MockData().productData;
   RxInt currentIndex = 1.obs;
 
   @override
@@ -313,9 +313,9 @@ class HomeScreen extends StatelessWidget {
                             physics: const BouncingScrollPhysics(),
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount: mockData.length,
+                            itemCount: products.length,
                             itemBuilder: (context, index) {
-                              return ProductCard(product: mockData[index]);
+                              return ProductCard(product: products[index]);
                             },
                           )),
                     ],

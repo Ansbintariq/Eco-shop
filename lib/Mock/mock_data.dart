@@ -1,27 +1,52 @@
 class Products {
   String? id;
   String? title;
-  String? img;
+  String? price;
   var offPrice;
+  String? unit;
   var quantity;
+  String? img;
+  String? img1;
+  String? img2;
+  String? img3;
 
-  Products({this.id, this.title, this.img, this.offPrice, this.quantity});
+  Products(
+      {this.id,
+      this.title,
+      this.price,
+      this.offPrice,
+      this.unit,
+      this.quantity,
+      this.img,
+      this.img1,
+      this.img2,
+      this.img3});
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    img = json['img'];
+    price = json['price'];
     offPrice = json['offPrice'];
-    offPrice = json['quantity'];
+    unit = json['unit'];
+    quantity = json['quantity'];
+    img = json['img'];
+    img1 = json['img1'];
+    img2 = json['img2'];
+    img3 = json['img3'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['title'] = this.title;
-    data['img'] = this.img;
+    data['price'] = this.price;
     data['offPrice'] = this.offPrice;
+    data['unit'] = this.unit;
     data['quantity'] = this.quantity;
+    data['img'] = this.img;
+    data['img1'] = this.img1;
+    data['img2'] = this.img2;
+    data['img3'] = this.img3;
     return data;
   }
 }
@@ -36,63 +61,68 @@ class MockData {
     {'text': 'Vagitable', "img": "images/cart.png"},
     {'text': 'Juice', "img": "images/cart.png"},
   ];
-  List productData = [
-    {
-      "id": "501",
-      "title": "Fruits",
-      "price": "\$9.99",
-      "offPrice": "6",
-      "quantity": "1",
-      "img": "images/tomato.png",
-      "img1": "images/tomato1.jpeg",
-      "img2": "images/tomato2.png",
-      "img3": "images/bag.png"
-    },
-    {
-      'id': "502",
-      'title': 'Vagitable',
-      'price': '\$9.99',
-      "offPrice": "6",
-      "quantity": "1",
-      "img": "images/f.png",
-      "img1": "images/tomato1.jpeg",
-      "img2": "images/tomato2.png",
-      "img3": "images/bag.png"
-    },
-    {
-      'id': "503",
-      'title': 'Juice',
-      'price': '\$9.99',
-      "offPrice": "6",
-      "quantity": "1",
-      "img": "images/bag.png",
-      "img1": "images/tomato1.jpeg",
-      "img2": "images/tomato2.png",
-      "img3": "images/bag.png",
-    },
-    {
-      'id': "504",
-      'title': 'Drinks',
-      'price': '\$9.99',
-      "offPrice": "6",
-      "quantity": "1",
-      "img": "images/f.png",
-      "img1": "images/tomato1.jpeg",
-      "img2": "images/tomato2.png",
-      "img3": "images/bag.png",
-    },
-    {
-      'id': "505",
-      'title': 'Fruits',
-      'price': '9.99',
-      "offPrice": "6",
-      "quantity": "1",
-      "img": "images/f.png",
-      "img1": "images/tomato1.jpeg",
-      "img2": "images/tomato2.png",
-      "img3": "images/bag.png",
-    },
+
+  List<Products> productData = [
+    Products(
+        id: "501",
+        title: "Fruits",
+        price: "\$9.99",
+        offPrice: 10,
+        quantity: 1,
+        unit: "kg",
+        img: "images/tomato.png",
+        img1: "images/tomato1.jpeg",
+        img2: "images/tomato2.png",
+        img3: "images/bag.png"),
+    Products(
+        id: "502",
+        title: 'Vagitable',
+        price: '\$9.99',
+        unit: "kg",
+        offPrice: 9,
+        quantity: 1,
+        img: "images/f.png",
+        img1: "images/tomato1.jpeg",
+        img2: "images/tomato2.png",
+        img3: "images/bag.png"),
+    Products(
+      id: "503",
+      title: 'Juice',
+      price: '\$9.99',
+      offPrice: 9,
+      unit: "box",
+      quantity: 1,
+      img: "images/bag.png",
+      img1: "images/tomato1.jpeg",
+      img2: "images/tomato2.png",
+      img3: "images/bag.png",
+    ),
+    Products(
+      id: "504",
+      title: 'Drinks',
+      price: '\$9.99',
+      offPrice: 7,
+      unit: "box",
+      quantity: 1,
+      img: "images/f.png",
+      img1: "images/tomato1.jpeg",
+      img2: "images/tomato2.png",
+      img3: "images/bag.png",
+    ),
+    Products(
+      id: "505",
+      title: 'Fruits',
+      price: '9.99',
+      offPrice: 6,
+      unit: "kg",
+      quantity: 1,
+      img: "images/f.png",
+      img1: "images/tomato1.jpeg",
+      img2: "images/tomato2.png",
+      img3: "images/bag.png",
+    )
   ];
+
   List sliderImg = [
     {
       'id': '1',
