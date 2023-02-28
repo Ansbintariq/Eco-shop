@@ -9,14 +9,17 @@ import 'package:eco_shop/Screen/product/product_details_page.dart';
 import 'package:eco_shop/Themes/colors.dart';
 import 'package:eco_shop/comman_widget/Catagory_widget.dart';
 import 'package:eco_shop/comman_widget/product_card_widget.dart';
+import 'package:eco_shop/controller/controller.dart';
+import 'package:eco_shop/controller/searchcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-
+  final controller = Get.put(Searchcontroller());
   final CarouselController carouselController = CarouselController();
   var products = MockData().productData;
+  // Products products;
   RxInt currentIndex = 1.obs;
 
   @override
@@ -95,6 +98,10 @@ class HomeScreen extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * .06,
                           width: MediaQuery.of(context).size.width * .9,
                           child: TextField(
+                            controller: controller.searchController,
+                            onChanged: (value) {
+                              controller.getdata(value);
+                            },
                             decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.search),
                                 fillColor:
@@ -105,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                                     Theme.of(context).textTheme.bodyMedium,
                                 border: OutlineInputBorder()),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),

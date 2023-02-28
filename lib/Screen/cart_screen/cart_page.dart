@@ -68,7 +68,45 @@ class _CartPageState extends State<CartPage> {
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              children: [
+                RawMaterialButton(
+                  elevation: 0,
+                  constraints:
+                      const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
+                  child: GetBuilder(
+                    init: AddCart(),
+                    builder: (value) => InkWell(
+                      child: IconButton(
+                          onPressed: () {
+                            Get.to(() => CartPage());
+                          },
+                          icon: Badge.count(
+                            textStyle: Theme.of(context).textTheme.bodySmall,
+                            textColor:
+                                Theme.of(context).colorScheme.onBackground,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
+                            count: value.cartList.length,
+                            child: Icon(
+                              Icons.shopping_cart_outlined,
+                              color: Theme.of(context).colorScheme.outline,
+                              size: 30,
+                            ),
+                          )),
+                    ),
+                  ),
+                  fillColor: Theme.of(context).colorScheme.primaryContainer,
+                  onPressed: () {},
+                ),
+                Text(
+                  "Items in your Cart",
+                  style: Theme.of(context).textTheme.labelLarge,
+                )
+              ],
+            ),
             Obx(
               () => ListView.builder(
                 scrollDirection: Axis.vertical,
@@ -146,15 +184,17 @@ class _CartPageState extends State<CartPage> {
                                             .primary),
                                     Text(controller.cartList[index].quantity!
                                         .toString()),
+                                    Text(controller.cartList[index].unit
+                                        .toString()),
                                     RawMaterialButton(
                                         constraints:
                                             BoxConstraints.tight(Size(25, 25)),
                                         onPressed: () {
                                           controller.increment(index);
-                                          var test = controller
-                                                  .cartList[index].quantity *
-                                              controller
-                                                  .cartList[index].offPrice;
+                                          // var test = controller
+                                          //         .cartList[index].quantity *
+                                          //     controller
+                                          //         .cartList[index].offPrice;
                                           //    print(test);
                                         },
                                         child: Icon(Icons.add, size: 16),

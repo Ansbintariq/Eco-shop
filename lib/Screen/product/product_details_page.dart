@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 class ProductWidget extends StatelessWidget {
   Products product = Get.arguments['product'];
   //we are getting all data from mock data list with id
+  String? selectedUnits;
   final controller = Get.put(AddCart());
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,11 @@ class ProductWidget extends StatelessWidget {
                       init: AddCart(),
                       builder: (value) => InkWell(
                         onTap: () {
-                          value.onItemtap(product);
+                          if (selectedUnits == null) {
+                            value.onItemtap(product);
+                          } else {
+                            controller.onUnitTap(product, selectedUnits!);
+                          }
                         },
                         child: CustomButton(
                           textcolor: Theme.of(context).colorScheme.onBackground,
@@ -334,17 +339,12 @@ class ProductWidget extends StatelessWidget {
                                           decoration: const InputDecoration(
                                             border: OutlineInputBorder(),
                                           ),
-                                          items: [
-                                            '1',
-                                            '2',
-                                            '3',
-                                            '4',
-                                            '5'
-                                          ].map((String value) {
+                                          items: ['1', '2', '3', '4', '5']
+                                              .map((String value) {
                                             return DropdownMenuItem(
                                               value: value,
                                               child: Text(
-                                                value+"kg",
+                                                value + "kg",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyMedium,
@@ -352,7 +352,7 @@ class ProductWidget extends StatelessWidget {
                                             );
                                           }).toList(),
                                           onChanged: (value) {
-                                            controller.onUnitTap(product, value!);
+                                            selectedUnits = value;
                                           },
                                         ),
                                       ),
@@ -380,17 +380,12 @@ class ProductWidget extends StatelessWidget {
                                           decoration: const InputDecoration(
                                             border: OutlineInputBorder(),
                                           ),
-                                          items: [
-                                            '1',
-                                            '2',
-                                            '3',
-                                            '4',
-                                            '5'
-                                          ].map((String value) {
+                                          items: ['1', '2', '3', '4', '5']
+                                              .map((String value) {
                                             return DropdownMenuItem(
                                               value: value,
                                               child: Text(
-                                                value+"box",
+                                                value + "box",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyMedium,
@@ -398,7 +393,7 @@ class ProductWidget extends StatelessWidget {
                                             );
                                           }).toList(),
                                           onChanged: (value) {
-                                            controller.onUnitTap(product, value!);
+                                            selectedUnits = value;
                                           },
                                         ),
                                       ),

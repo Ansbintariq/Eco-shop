@@ -6,33 +6,35 @@ class AddCart extends GetxController {
   final cartList = <Products>[].obs;
   var mockData = MockData().productData;
   //RxList <Products> testList=<Products>[].obs;
-  var itemCount;
-  var items;
-  onItemtap(Products products) {
-    print("valing");
-    int index = checkInCart(products.id!);
-    print(products.quantity.runtimeType);
-    if (index == -1) {
+  // var itemCount;
+  // var items;
 
-      cartList.value.add(
-        Products(
-            id: products.id!,
-            title: products.title!,
-            img: products.img,
-            offPrice: products.offPrice,
-            quantity: products.quantity),
-      );
+  onItemtap(Products products) {
+    int index = checkInCart(products.id!);
+    if (index == -1) {
+      cartList.value.add(products);
     } else {
-      print(cartList[index].quantity.runtimeType);
-      cartList[index].quantity=cartList[index].quantity+1;
+      cartList[index].quantity = cartList[index].quantity + 1;
     }
     getTotal();
-    // checkInCart(id);
+    cartList.refresh();
     update();
-
   }
-  onUnitTap(Products item,String units){
-    int unit=int.parse(units);
+
+  int checkInCart(String id) {
+    int index = -1;
+    if (cartList.isNotEmpty) {
+      for (var i = 0; i < cartList.length; i++) {
+        if (cartList[i].id!.contains(id)) {
+          index = i;
+        }
+      }
+    }
+    return index;
+  }
+
+  onUnitTap(Products item, String units) {
+    int unit = int.parse(units);
     int index = checkInCart(item.id!);
 
     if (index == -1) {
@@ -45,20 +47,20 @@ class AddCart extends GetxController {
             quantity: unit!),
       );
     } else {
-      cartList[index].quantity= unit;
-     // +cartList[index].quantity+unit
+      cartList[index].quantity = unit;
+      // +cartList[index].quantity+unit
     }
     getTotal();
     // checkInCart(id);
     update();
-
   }
-
 
   delete(int index) {
     cartList.removeAt(index);
+    cartList.refresh();
     getTotal();
     update();
+
     Get.snackbar(
       "Product Deleted",
       "Removed From Cart list",
@@ -84,7 +86,6 @@ class AddCart extends GetxController {
 
   decrement(int index) {
     if (cartList[index].quantity <= 1) {
-
       delete(index);
     } else {
       cartList[index].quantity--;
@@ -105,20 +106,5 @@ class AddCart extends GetxController {
       tototalPrice.value += k.quantity * k.offPrice;
       //  print(k.toJson());
     }
-  }
-
-  int checkInCart(String id) {
-    //print("valjhftyfing");
-    int index = -1;
-    if (cartList.isNotEmpty) {
-      for (int i = 0; i < cartList.length; i++) {
-        if (id == cartList[i].id) {
-          index = i;
-        } else {
-          index = -1;
-        }
-      }
-    }
-    return index;
   }
 }

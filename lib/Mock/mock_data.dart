@@ -81,9 +81,9 @@ class MockData {
         unit: "kg",
         offPrice: 9,
         quantity: 1,
-        img: "images/f.png",
+        img: "images/tomato2.png",
         img1: "images/tomato1.jpeg",
-        img2: "images/tomato2.png",
+        img2: "images/f.png",
         img3: "images/bag.png"),
     Products(
       id: "503",
@@ -128,7 +128,7 @@ class MockData {
       'id': '1',
       'title': 'Fresh Grocery',
       'heading': 'Theres you can Buy \n your all of grocery \n products',
-      "img_path": "images/f.png",
+      "img_path": "images/tomato2.png",
     },
     {
       'id': '2',
@@ -161,9 +161,9 @@ List pp = [
     'title': 'Vagitable',
     'price': '\$9.99',
     'offPrice': '\$6.99',
-    "img": "images/f.png",
+    "img": "images/tomato2.png",
     "img1": "images/tomato1.jpeg",
-    "img2": "images/tomato2.png",
+    "img2": "images/f.png",
     "img3": "images/bag.png"
   },
   {
