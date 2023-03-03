@@ -6,6 +6,7 @@ import 'package:eco_shop/Mock/mock_data.dart';
 import 'package:eco_shop/Screen/cart_screen/cart_controller.dart';
 import 'package:eco_shop/Screen/cart_screen/cart_page.dart';
 import 'package:eco_shop/Screen/product/product_details_page.dart';
+import 'package:eco_shop/Screen/search/search_page.dart';
 import 'package:eco_shop/Themes/colors.dart';
 import 'package:eco_shop/comman_widget/Catagory_widget.dart';
 import 'package:eco_shop/comman_widget/product_card_widget.dart';
@@ -98,19 +99,19 @@ class HomeScreen extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * .06,
                           width: MediaQuery.of(context).size.width * .9,
                           child: TextField(
-                            controller: controller.searchController,
+                            //  controller: controller.searchtextController,
                             onChanged: (value) {
-                              controller.getdata(value);
+                              Get.to(() => SearchPage());
                             },
                             decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.search),
-                                fillColor:
-                                    Theme.of(context).colorScheme.onBackground,
-                                filled: true,
-                                hintText: "Search products",
-                                hintStyle:
-                                    Theme.of(context).textTheme.bodyMedium,
-                                border: OutlineInputBorder()),
+                              prefixIcon: Icon(Icons.search),
+                              fillColor:
+                                  Theme.of(context).colorScheme.onBackground,
+                              filled: true,
+                              hintText: "Search products",
+                              hintStyle: Theme.of(context).textTheme.bodyMedium,
+                              border: OutlineInputBorder(),
+                            ),
                           ),
                         ),
                       ],

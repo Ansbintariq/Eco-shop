@@ -3,27 +3,27 @@ import 'package:get/get.dart';
 
 class SearchProducts {
   var isLoading = false.obs;
-  var products = MockData().productData;
-  RxList foundproduct = [].obs;
-  RxList allProducts = [].obs;
-  getdata(String value) {
-    RxList results = [].obs;
 
-    for (var e in products) {
-      allProducts.add(e.toJson());
-    }
+  final foundproduct = [].obs;
+  // final foundproduct = <Products>[].obs;
+
+  final allProducts = MockData().productData;
+  getdata(String value) {
+    RxList results = <Products>[].obs;
+
     //  print(allUsers);
 
     if (value.isEmpty) {
-      results = allProducts;
+      results.value = allProducts;
       foundproduct.value = results;
     } else {
       results.value = allProducts
           .where((products) =>
-              products["title"].toLowerCase().contains(value.toLowerCase()))
+              products.title!.toLowerCase().contains(value.toLowerCase()))
           .toList();
       foundproduct.value = results;
     }
-    print(foundproduct.value);
+    //print(foundproduct.value);
+    return foundproduct.value;
   }
 }

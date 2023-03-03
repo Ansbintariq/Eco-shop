@@ -6,10 +6,13 @@ import 'package:get/get.dart';
 class Searchcontroller extends GetxController {
   //create instance
   static Searchcontroller instance = Get.find();
-  TextEditingController searchController = TextEditingController();
+  TextEditingController searchtextController = TextEditingController();
   var isLoading = false.obs;
+  final searchList = <Products>[].obs;
 
   getdata(value) async {
-    await SearchProducts().getdata(searchController.text);
+    searchList.value = await SearchProducts().getdata(value);
+    //   print("list wala ===========================$searchList");
+    //  print("list length ===========================${searchList.length}");
   }
 }
